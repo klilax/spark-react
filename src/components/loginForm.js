@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Login() {
+function LoginForm() {
   const [formData, setFormData] = React.useState(null);
   const url = 'http://127.0.0.1:8000/token'
   const handleSubmit = event => {
@@ -45,4 +45,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginForm;

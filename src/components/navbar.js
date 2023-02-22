@@ -9,11 +9,12 @@ function Navbar() {
   };
 
   return (
-    <nav className={`flex justify-between items-center h-16 bg-${isDark ? 'gray' : 'green'}-500 text-white`}>
+    // <nav className={`flex justify-between items-center h-16 bg-${isDark ? 'gray' : 'green'}-500 text-white`}>
+    <nav className="flex justify-between items-center dark:bg-gray-800 500 text-white">
       <div className="flex items-center">
-        <Link to="/" className="mr-4 text-lg font-bold">My App</Link>
-        <Link to="/about" className="mr-4v text-gray-800">About</Link>
-        <Link to="/contact">Contact</Link>
+        <Link to="/" className="mr-4 text-lg font-bold">Spark</Link>
+        <Link to="/about" className="mr-4v">About</Link>
+        <Link to="/login">Login</Link>
       </div>
       <div className="flex items-center">
         <button className="mr-4 text-pink-300" onClick={handleToggle}>{isDark ? 'Light' : 'Dark'} Mode</button>
