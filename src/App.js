@@ -7,13 +7,20 @@ import About from "./pages/about";
 import Home from "./pages/home";
 
 function App() {
+  const [darkMode, setDarkMode] = React.useState(true)
+  function toggleDarkMode() {
+    setDarkMode(prevDarkMode => !prevDarkMode)
+  }
   return (
     // <div>
     //   <About />
     // </div>
-    <div className="dark">
+    <div className={`${darkMode ? "dark" : ""}`}>
       <BrowserRouter>
-        <Navbar />
+        <Navbar
+          darkMode={darkMode}
+          toggleDarkMode={toggleDarkMode}
+        />
         <Routes>
           <Route  path="/" element={<Home />} />
           <Route  path="/about" element={<About />} />

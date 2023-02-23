@@ -1,12 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Navbar() {
-  const [isDark, setIsDark] = React.useState(false);
+function Navbar(props) {
 
-  const handleToggle = () => {
-    setIsDark(!isDark);
-  };
 
   return (
     // <nav className={`flex justify-between items-center h-16 bg-${isDark ? 'gray' : 'green'}-500 text-white`}>
@@ -17,7 +13,8 @@ function Navbar() {
         <Link to="/login">Login</Link>
       </div>
       <div className="flex items-center">
-        <button className="mr-4 text-pink-300" onClick={handleToggle}>{isDark ? 'Light' : 'Dark'} Mode</button>
+        {/* eslint-disable-next-line react/prop-types */}
+        <button className="mr-4 text-pink-300" onClick={props.toggleDarkMode}>Dark Mode</button>
       </div>
     </nav>
   );
