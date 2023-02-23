@@ -11,14 +11,18 @@ function App() {
     // <div>
     //   <About />
     // </div>
-    <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route  path="/" element={<Home />} />
-        <Route  path="/about" element={<About />} />
-        <Route  path="/login" element={<Login />} />
-      </Routes>
-    </BrowserRouter>
+    <div className="dark">
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route  path="/" element={<Home />} />
+          <Route  path="/about" element={<About />} />
+          <Route  path="/login" element={<Login />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+
+
   );
 }
 
