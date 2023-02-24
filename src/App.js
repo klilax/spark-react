@@ -20,9 +20,6 @@ function App() {
     setDarkMode(!darkMode)
   }
   return (
-    // <div>
-    //   <About />
-    // </div>
     <div className={`${darkMode ? "dark" : ""}`}>
       <BrowserRouter>
         <Navbar
