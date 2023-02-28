@@ -1,8 +1,13 @@
 import React from 'react';
+import axiosClient from "../api/client";
+
 
 function LoginForm() {
+  const formHeader = {
+    headers: { "Content-Type": "multipart/form-data" }
+  }
   const [formData, setFormData] = React.useState(null);
-  const url = 'http://127.0.0.1:8000/token'
+  // const url = 'http://127.0.0.1:8000/token'
   const handleSubmit = event => {
     event.preventDefault();
 
@@ -12,16 +17,23 @@ function LoginForm() {
   };
 
   React.useEffect( () => {
-    async function fetchData() {
-      const token = await fetch(url, {
-        method: 'POST',
-        body: formData
-      });
-      return token.json()
+    if (formData != null) {
+      axiosClient.post('/token',formData,formHeader)
+        .then((res) => {
+          localStorage.setItem('access_token', res.data['access_token']);
+          localStorage.setItem('refresh_token', res.data['refresh_token']);
+        })
     }
-    if (formData) {
-      console.log(fetchData())
-    }
+
+    // async function fetchData() {
+    //   const token = await fetch(url, {
+    //     method: 'POST',
+    //     body: formData
+    //   });
+    //   return token.json()
+    // }
+
+
   }, [formData]);
 
   return (
