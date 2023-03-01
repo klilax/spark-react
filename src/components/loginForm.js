@@ -1,8 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import axiosClient from "../api/client";
 
 
 function LoginForm() {
+  const navigate = useNavigate();
   const formHeader = {
     headers: { "Content-Type": "multipart/form-data" }
   }
@@ -22,6 +24,7 @@ function LoginForm() {
         .then((res) => {
           localStorage.setItem('access_token', res.data['access_token']);
           localStorage.setItem('refresh_token', res.data['refresh_token']);
+          navigate('/', { replace: true });
         })
     }
 

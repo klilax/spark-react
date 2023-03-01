@@ -1,19 +1,19 @@
 import axios from 'axios';
+const storedToken = localStorage.getItem('access_token');
+const token =  (storedToken !== null) ? storedToken : '';
+// const token = localStorage.getItem('access_key')
 
-
-// const appHeader = {
-//   headers: {
-//     'Accept': 'application/json',
-//     'Content-Type': 'application/json'
-//   }
-// }
+const appHeader = {
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Authorization': `Basic ${token}`
+  }
+}
 
 const axiosClient = axios.create({
   baseURL: `http://localhost:8000`,
-  // headers: {
-  //   'Accept': 'application/json',
-  //   'Content-Type': 'application/json'
-  // }
+  appHeader
 });
 
 axiosClient.interceptors.response.use(
