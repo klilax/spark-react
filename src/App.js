@@ -13,7 +13,7 @@ function App() {
     const savedDarkMode = localStorage.getItem('theme');
     return savedDarkMode !== null ? JSON.parse(savedDarkMode) : false;
   })
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState([]);
 
   useEffect(() => {
     localStorage.setItem('theme', darkMode);
@@ -22,25 +22,20 @@ function App() {
   useEffect(() => {
     const storedToken = localStorage.getItem('access_token');
     const token =  (storedToken !== null) ? storedToken : '';
-// const token = localStorage.getItem('access_key')
-
-    const appHeader = {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': `Basic ${token}`
+    async function fetchUser() {
+      const appHeader = {
+        headers: {
+          'Accept': '*/*',
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
       }
+      const res = await axiosClient.get('/inventory/list',  appHeader);
+      setUserData([res.data]);
     }
 
     if (localStorage.getItem('access_token') !== null) {
-      const userInfo = axiosClient.post('/user/detail', null, appHeader)
-        .then(res => {
-          return res.data
-        })
-      console.log(token)
-      console.log(userInfo)
-      setUserData(userInfo)
-      // setUserData(null)
+      fetchUser();
     }
   }, []);
 
