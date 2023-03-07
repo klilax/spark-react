@@ -13,7 +13,8 @@ function App() {
     const savedDarkMode = localStorage.getItem('theme');
     return savedDarkMode !== null ? JSON.parse(savedDarkMode) : false;
   })
-  const [userData, setUserData] = useState([]);
+  // const [userData, setUserData] = useState([]);
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     localStorage.setItem('theme', darkMode);
@@ -31,7 +32,7 @@ function App() {
         }
       }
       const res = await axiosClient.get('/inventory/list',  appHeader);
-      setUserData([res.data]);
+      setUserData(res.data);
     }
 
     if (localStorage.getItem('access_token') !== null) {
